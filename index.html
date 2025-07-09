@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>İyikii Doğdunnn Bal Arıcığımmm</title>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Parisienne&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    body, html {
+      margin: 0;
+      padding: 0;
+      font-family: 'Parisienne', cursive;
+      background: #fff0f5;
+      overflow-x: hidden;
+    }
+
+    #lock-screen {
+      position: fixed;
+      top:0; left:0; right:0; bottom:0;
+      background: #fff0f5;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      transition: opacity 0.5s ease;
+    }
+
+    .heart-lock {
+      width: 120px;
+      height: 120px;
+      background: #e91e63;
+      transform: rotate(-45deg);
+      position: relative;
+      margin-bottom: 20px;
+    }
+    .heart-lock:before,
+    .heart-lock:after {
+      content: "";
+      position: absolute;
+      width: 120px;
+      height: 120px;
+      background: #e91e63;
+      border-radius: 50%;
+    }
+    .heart-lock:before {
+      top: -60px;
+      left: 0;
+    }
+    .heart-lock:after {
+      left: 60px;
+      top: 0;
+    }
+
+    #password {
+      transform: rotate(45deg);
+      margin-top: 20px;
+      padding: 10px;
+      font-size: 18px;
+      border: 2px solid #c2185b;
+      border-radius: 8px;
+      width: 200px;
+      text-align: center;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    button {
+      margin-top: 15px;
+      padding: 10px 20px;
+      font-size: 16px;
+      background: #e91e63;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    #unlock-msg {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%,-50%);
+      font-size: 40px;
+      font-family: 'Great Vibes', cursive;
+      color: #e91e63;
+      display: none;
+      z-index: 9998;
+    }
+
+    #main-content {
+      display: none;
+      background: url('https://www.dropbox.com/scl/fi/ernftrcvhnkxft1t64i5b/663ded16ef25f9e20ca7ac0f8a8b71dd.jpg?raw=1') no-repeat center center fixed;
+      background-size: cover;
+      padding: 60px 20px;
+      min-height: 100vh;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 42px;
+      color: #fff;
+      text-shadow: 2px 2px 6px #c2185b;
+      font-family: 'Great Vibes', cursive;
+      margin-bottom: 50px;
+    }
+
+    .card-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(280px,1fr));
+      gap: 30px;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .card {
+      background: rgba(255,255,255,0.9);
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .card img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+    }
+
+    .card p {
+      padding: 15px;
+      text-align: center;
+      font-size: 18px;
+      font-style: italic;
+      color: #c2185b;
+    }
+  </style>
+</head>
+<body>
+
+<div id="lock-screen">
+  <div class="heart-lock"></div>
+  <input type="password" id="password" placeholder="Şifre" maxlength="8"/>
+  <button onclick="checkPassword()">Giriş Yap</button>
+</div>
+
+<div id="unlock-msg">Şifreyi Bildin Hayatımın Anlamı 💖</div>
+
+<div id="main-content">
+  <h1>İyikii Doğdunnn Bal Arıcığımmm</h1>
+  <div class="card-container" id="cards"></div>
+</div>
+
+<script>
+  const password = "22062024";
+  const input = document.getElementById("password");
+  const lockScreen = document.getElementById("lock-screen");
+  const unlockMsg = document.getElementById("unlock-msg");
+  const mainContent = document.getElementById("main-content");
+
+  function checkPassword() {
+    if (input.value === password) {
+      unlockMsg.style.display = "block";
+      lockScreen.style.opacity = "0";
+      setTimeout(() => {
+        lockScreen.style.display = "none";
+        unlockMsg.style.display = "none";
+        mainContent.style.display = "block";
+        generateCards();
+      }, 3000);
+    } else {
+      alert("Şifre yanlış canım, tekrar dene.");
+    }
+  }
+
+  input.addEventListener("keyup", (e) => {
+    if (e.key === "Enter") checkPassword();
+  });
+
+  const images = [
+    "https://www.dropbox.com/s/kzqntx68w3kq4nv/1.jpg?raw=1",
+    "https://www.dropbox.com/s/fm44a9i2yk06x01/2.jpg?raw=1",
+    "https://www.dropbox.com/s/4tde9gsytdfdt96/3.jpg?raw=1",
+    "https://www.dropbox.com/s/3nmvl90xxw0qg0z/4.jpg?raw=1",
+    "https://www.dropbox.com/s/0nwqvyeu62axre7/5.jpg?raw=1",
+    "https://www.dropbox.com/s/7b6exu3q7bfgh4m/6.jpg?raw=1",
+    "https://www.dropbox.com/s/8y5zspem8sw60uu/7.jpg?raw=1"
+  ];
+
+  const quotes = [
+    "Seninle her şey bir başka güzel 💞",
+    "Kalbim seninle atıyor, hep seninle 🫶",
+    "Hayat seninle anlamlı aşkım 💘",
+    "Gözlerin en huzurlu limanım ❤️",
+    "Sonsuzluğum seninle başlıyor 🌙",
+    "İyi ki varsın, iyi ki benimsin 💍",
+    "Sevgin en güzel elbise gibi sarıyor beni 🌹"
+  ];
+
+  function generateCards() {
+    const container = document.getElementById("cards");
+    for (let i = 0; i < images.length; i++) {
+      const card = document.createElement("div");
+      card.className = "card";
+
+      const img = document.createElement("img");
+      img.src = images[i];
+
+      const p = document.createElement("p");
+      p.textContent = quotes[i];
+
+      card.appendChild(img);
+      card.appendChild(p);
+      container.appendChild(card);
+    }
+  }
+</script>
+
+</body>
+</html>
